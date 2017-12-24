@@ -5,15 +5,16 @@
   "main": "index.js",
   "scripts": {
     "startMessage": "babel-node buildScripts/startMessage.js",
-    "test": "node buildScripts/test.spec.js",
     "open:src": "babel-node buildScripts/srcServer.js",
-    "lint": "esw webpack.config.*, src, buildScripts --color",
-    "lint:watch":"npm run lint -- --w; exit 0",
-    "prestart": "npm-run-all --parallel  test startMessage",
+    "lint": "esw webpack.config.*, src, buildScripts --color -w",
+    "lint:watch": "npm run lint -- --cache; exit 0",
+    "prestart": "npm-run-all --parallel test startMessage",
     "start": "npm-run-all --parallel security-check open:src lint:watch",
     "security-check": "nsp check",
     "localtunnel": "lt --port 3000 --subdomain pressto",
-    "share": "npm-run-all --parallel start localtunnel"
+    "share": "npm-run-all --parallel start localtunnel",
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.spec.js\"",
+    "test:watch": "npm run test -- --watch; exit 0"
   },
   "repository": {
     "type": "git",
