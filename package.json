@@ -9,12 +9,15 @@
     "lint": "esw webpack.config.*, src, buildScripts --color -w",
     "lint:watch": "npm run lint -- --cache; exit 0",
     "prestart": "npm-run-all --parallel test startMessage",
-    "start": "npm-run-all --parallel security-check open:src lint:watch",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch start-mockapi",
     "security-check": "nsp check",
     "localtunnel": "lt --port 3000 --subdomain pressto",
     "share": "npm-run-all --parallel start localtunnel",
     "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.spec.js\"",
-    "test:watch": "npm run test -- --watch; exit 0"
+    "test:watch": "npm run test -- --watch; exit 0",
+    "generate-mock-data":"babel-node buildScripts/generateMockData",
+    "prestart-mockapi":"npm run generate-mock-data",
+    "start-mockapi":"json-server --watch src/api/db.json --port 3001"
   },
   "repository": {
     "type": "git",
