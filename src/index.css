@@ -1,3 +1,10 @@
 html {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.userTable {border:0; text-align:center;}
+.userTable thead { background-color:#1d17d8; color: #fff; }
+.userTable thead th {padding:5px;}
+.userTable tbody { background-color:#fff; border: 1px solid #000;}
+.userTable tbody tr:nth-child(odd){background-color: #f3f3f3;}
+.userTable tbody td {padding:5px;}
